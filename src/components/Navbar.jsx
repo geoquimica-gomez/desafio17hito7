@@ -2,12 +2,13 @@ import { Container, Nav, Navbar, Image, Tooltip } from 'react-bootstrap';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import { NavLink } from "react-router-dom";
 import { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 import { CartContext } from '../context/CartContext';
 
 const NavbarApp = () => {
     const { calculateTotal } = useContext(CartContext);
     const setActiveClass = ({ isActive }) => (isActive ? "active" : undefined);
-    const token = false;
+    const { token, logout } = useContext(UserContext);
 
     return (
         <Navbar collapseOnSelect expand="lg" className="custom-navbar" sticky="top">
@@ -45,7 +46,7 @@ const NavbarApp = () => {
                                 placement="bottom"
                                 overlay={<Tooltip id="tooltip-logout">Cerrar sesión</Tooltip>}
                             >
-                                <NavLink to="/" className={`btn1 ${setActiveClass}`}>🔒Logout</NavLink>
+                                <button onClick={logout} className="btn4">🔒Logout</button>
                             </OverlayTrigger>
                         ) : (
                             <OverlayTrigger

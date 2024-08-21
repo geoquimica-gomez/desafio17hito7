@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 //Componentes importados
 import NavbarApp from './components/Navbar';
@@ -13,7 +13,12 @@ import Pizza from './pages/Pizza';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 
+// Contextos importados
+import { useContext } from 'react';
+import { UserContext } from './context/UserContext';
 function App() {
+  const { token } = useContext(UserContext);
+
   return (
     <div className='appGrid'>
       <header>
@@ -43,7 +48,7 @@ function App() {
             element={<Pizza />} />
           <Route
             path="/profile"
-            element={<Profile />} />
+            element={token ? <Profile /> : <Navigate to="/login" />} />
           <Route
             path="*"
             element={<NotFound />} />

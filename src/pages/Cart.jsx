@@ -1,8 +1,11 @@
+import { useContext } from 'react';
 import { Container, Row, Col, Button, Card, ListGroup, Table, Alert } from 'react-bootstrap';
 import usePizzaCart from '../hooks/usePizzaCart';
+import { UserContext } from '../context/UserContext';  // Importa tu contexto de usuario
 
 const Cart = () => {
     const { cart, pizzas, increaseQuantity, decreaseQuantity, calculateTotal } = usePizzaCart();
+    const { token } = useContext(UserContext);  // Accede al token desde el contexto
 
     const getPizzaDetails = (pizzaId) => {
         return pizzas.find(pizza => pizza.id === pizzaId);
@@ -82,7 +85,18 @@ const Cart = () => {
                                             </tr>
                                         </tbody>
                                     </Table>
-                                    <Button variant="success" className="mt-3">Pagar</Button>
+                                    {!token && (
+                                        <Alert variant="warning" className="mt-3">
+                                            Debes iniciar sesión para proceder al pago.
+                                        </Alert>
+                                    )}
+                                    <Button 
+                                        variant="success" 
+                                        className="mt-3"
+                                        disabled={!token}  // Desactiva el botón si token es false
+                                    >
+                                        Pagar
+                                    </Button>
                                 </Card.Body>
                             </Col>
                         </Row>
@@ -94,3 +108,4 @@ const Cart = () => {
 };
 
 export default Cart;
+

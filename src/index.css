@@ -40,10 +40,19 @@ body {
   width: 6rem;
   margin: 0 3px;
   color: #521b0b;
-  padding: 4px;
+  text-align: center;
 }
 
-.btn1:hover {
+.btn4{
+  color: #521b0b;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+}
+
+
+
+.btn1:hover, .btn4:hover {
   border: 1px solid #521b0b;
   background-color: rgba(237, 193, 48, 0.521);
   border-radius: 5px;
@@ -184,6 +193,7 @@ h6 {
 /* Clase active */
 
 .active {
-  color: rgb(72, 92, 72);
-  font-weight: 900;
+  border: 1px solid #521b0b;
+  background-color: rgba(237, 193, 48, 0.521);
+  border-radius: 5px;
   }

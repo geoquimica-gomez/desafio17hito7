@@ -1,7 +1,10 @@
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 const Profile = () => {
+    const { logout } = useContext(UserContext);
+
     return (
         <Container
             className="mt-4 p-4 bg-light shadow-sm rounded"
@@ -26,7 +29,7 @@ const Profile = () => {
                     <div className="d-flex flex-column flex-sm-row mt-3">
                         <Link to="/edit-profile" className='btn btn-outline-primary me-2 mb-2 mb-sm-0'>Editar Perfil</Link>
                         <Link to="/orders" className='btn btn-outline-secondary me-2 mb-2 mb-sm-0'>Mis Pedidos</Link>
-                        <Link to="/" className='btn btn-danger'>🔒 Logout</Link>
+                        <button onClick={logout} className="btn4">🔒Logout</button>
                     </div>
                 </Col>
             </Row>
