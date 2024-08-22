@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import { Container, Row, Col, Button, Card, ListGroup, Table, Alert } from 'react-bootstrap';
 import usePizzaCart from '../hooks/usePizzaCart';
-import { UserContext } from '../context/UserContext';  // Importa tu contexto de usuario
+import { UserContext } from '../context/UserContext';
 
 const Cart = () => {
     const { cart, pizzas, increaseQuantity, decreaseQuantity, calculateTotal } = usePizzaCart();
-    const { token } = useContext(UserContext);  // Accede al token desde el contexto
+    const { token } = useContext(UserContext);
 
     const getPizzaDetails = (pizzaId) => {
         return pizzas.find(pizza => pizza.id === pizzaId);
@@ -90,10 +90,10 @@ const Cart = () => {
                                             Debes iniciar sesión para proceder al pago.
                                         </Alert>
                                     )}
-                                    <Button 
-                                        variant="success" 
+                                    <Button
+                                        variant="success"
                                         className="mt-3"
-                                        disabled={!token}  // Desactiva el botón si token es false
+                                        disabled={!token}
                                     >
                                         Pagar
                                     </Button>
