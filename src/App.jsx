@@ -3,7 +3,6 @@ import 'react-toastify/dist/ReactToastify.css';
 //Componentes importados
 import NavbarApp from './components/Navbar';
 import Footer from './components/Footer';
-
 // Vistas importadas
 import Home from './pages/Home';
 import RegisterPage from './pages/RegisterPage';
@@ -12,10 +11,10 @@ import Cart from './pages/Cart';
 import Pizza from './pages/Pizza';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
-
 // Contextos importados
 import { useContext } from 'react';
 import { UserContext } from './context/UserContext';
+
 function App() {
   const { token } = useContext(UserContext);
 
@@ -24,7 +23,6 @@ function App() {
       <header>
         <NavbarApp />
       </header>
-
       <main>
         <Routes>
           <Route
@@ -33,11 +31,11 @@ function App() {
           />
           <Route
             path="/register"
-            element={<RegisterPage />}
+            element={token ? <Navigate to="/" /> : <RegisterPage />}
           />
           <Route
             path="/login"
-            element={<LoginPage />}
+            element={token ? <Navigate to="/" /> : <LoginPage />}
           />
           <Route
             path='cartShooping'
@@ -45,16 +43,18 @@ function App() {
           />
           <Route
             path="/pizza/:id"
-            element={<Pizza />} />
+            element={<Pizza />}
+          />
           <Route
             path="/profile"
-            element={token ? <Profile /> : <Navigate to="/login" />} />
+            element={token ? <Profile /> : <Navigate to="/login" />}
+          />
           <Route
             path="*"
-            element={<NotFound />} />
+            element={<NotFound />}
+          />
         </Routes>
       </main>
-
       <footer>
         <Footer />
       </footer>
